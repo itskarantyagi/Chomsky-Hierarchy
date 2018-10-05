@@ -13,23 +13,23 @@ def type1(SL,lhs,rhs,l,r):                              #return SL and type
     
     if(l>r):
         return SL, 0
-    print (1)
+    #print (1)
     for q in range(len(lhs)):
         if(lhs[q]=="S"):
             Sleft = True
-    print (2)
+    #print (2)
     for t in range(len(rhs)):
         if(rhs[t]=="l"):
             lRight = True
         if(rhs[t]=="S"):
             SRight = True
-    print (3)
+    #print (3)
     if (Sleft and lRight):
         return True, 1
-    print (4)
+    #print (4)
     if (Sleft == False and SRight== True and SL == True):
         return SL, 0
-    print (5)
+    #print (5)
     if (Sleft == True and SRight== True):
         return SL, 1
     return SL, 1
@@ -41,21 +41,24 @@ def type2(l):
         return 1
 
 def type3_LL(rhs,lhs):
-    counter=0
     for m in range(1,len(rhs)):
         if((rhs[m]=="A")or(rhs[m]=="B")or(rhs[m]=="S")):
+            #print ("Here")
             return False,2
     return True,3
             
 
-def type3_RL(rhs):
+def type3_RL(RL,rhs):
     counter1=0
+    counter2=0
     for b in range(1,len(rhs)):
         if((rhs[b]=="A")or(rhs[b]=="B")or(rhs[b]=="S")):
             counter1=counter1+1
     if(counter1==0):
-        return False, 3
-    if((counter1==1)and((rhs[len(rhs)]!="A")or(rhs[len(rhs)]!="B")or(rhs[len(rhs)]!="S"))):
+        return RL, 3
+    if((counter1==1)and((rhs[len(rhs)-1]=="A")or(rhs[len(rhs)-1]=="B")or(rhs[len(rhs)-1]=="S"))):
+        return True,3
+    elif(counter1==0):
         return True,3
     else:
         return False,2
@@ -67,7 +70,7 @@ type=4
 i=0
 SL = False
 LL= False
-RL = True
+RL = False
 #flag="false"
 for i in range(s):
     pfunc.append(input("Enter LHS of "+str(i)+"th/st production function : "))
@@ -85,8 +88,8 @@ for i in range(s):
         if(((pfunc[i*2+1][0]=="A")or(pfunc[i*2+1][0]=="B")or(pfunc[i*2+1][0]=="S"))and RL==False):
             LL ,min=type3_LL(pfunc[i*2+1],pfunc[i*2])
         elif(((pfunc[i*2+1][0]=="a")or(pfunc[i*2+1][0]=="b")or(pfunc[i*2+1][0]=="l"))and LL==False):
-            RL ,min=type3_RL(pfunc[i*2+1])
-    print ("min = " + str(min))
+            RL ,min=type3_RL(RL,pfunc[i*2+1])
+    #print ("min = " + str(min))
 if((min==0)or(min==1)or(min==2)or(min==3)):
     print("Type is :"+str(min))
 else:
