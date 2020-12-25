@@ -1,5 +1,5 @@
 # Chomsky-Hierarchy in Python
-According to Noam Chomosky, there are four types of grammars − Type 0, Type 1, Type 2, and Type 3.
+According to Noam Chomsky, there are four types of grammars − Type 0, Type 1, Type 2, and Type 3.
 
 differ as follows:	 
 
